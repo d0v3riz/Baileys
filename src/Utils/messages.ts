@@ -626,8 +626,10 @@ export const generateWAMessageFromContent = (
 		}
 	}
 
-	if(contextInfo) {
+	if(contextInfo && message[key]) {
+		/* @ts-ignore */
 		message[key].contextInfo = {
+			/* @ts-ignore */
 			...(message[key].contextInfo || {}),
 			...contextInfo
 		}
