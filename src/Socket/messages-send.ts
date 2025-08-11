@@ -195,7 +195,7 @@ export const makeMessagesSocket = (config: SocketConfig) => {
 			const user = jidDecode(jid)?.user
 			jid = jidNormalizedUser(jid)
 			if (useCache) {
-				const devices = userDevicesCache.get<JidWithDevice[]>(user!)
+				const devices = userDevicesCache.get<JidWithDevice[]>(user!) as JidWithDevice[]
 				if (devices) {
 					deviceResults.push(...devices)
 
