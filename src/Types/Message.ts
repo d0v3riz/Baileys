@@ -301,6 +301,8 @@ export type MiscMessageGenerationOptions = MinimalRelayOptions & {
     font?: number
     /** if it is broadcast */
     broadcast?: boolean
+	/** custom message id */
+	messageId?: string
 }
 export type MessageGenerationOptionsFromContent = MiscMessageGenerationOptions & {
 	userJid: string
