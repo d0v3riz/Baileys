@@ -656,8 +656,8 @@ export const makeChatsSocket = (config: SocketConfig) => {
 	const sendPresenceUpdate = async (type: WAPresence, toJid?: string) => {
 		const me = authState.creds.me!
 		if (type === 'available' || type === 'unavailable') {
-			if (!me.name) {
-				logger.warn('no name present, ignoring presence update request...')
+			if (!me.id) {
+				logger.warn('no id present, ignoring presence update request...')
 				return
 			}
 
@@ -666,7 +666,7 @@ export const makeChatsSocket = (config: SocketConfig) => {
 			await sendNode({
 				tag: 'presence',
 				attrs: {
-					name: me.name.replace(/@/g, ''),
+					name: me.id.replace(/@/g, ''),
 					type
 				}
 			})
