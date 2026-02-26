@@ -37,7 +37,8 @@
     "preinstall": "node ./engine-requirements.js",
     "release": "release-it",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest --testMatch '**/*.test.ts'",
-    "test:e2e": "node --experimental-vm-modules ./node_modules/.bin/jest --testMatch '**/*.test-e2e.ts'"
+    "test:e2e": "node --experimental-vm-modules ./node_modules/.bin/jest --testMatch '**/*.test-e2e.ts'",
+    "update:version": "tsx ./scripts/update-version.ts"
   },
   "dependencies": {
     "@cacheable/node-cache": "^1.4.0",
@@ -50,6 +51,7 @@
     "p-queue": "^9.0.0",
     "pino": "^9.6",
     "protobufjs": "^7.2.4",
+    "whatsapp-rust-bridge": "0.5.2",
     "ws": "^8.13.0"
   },
   "devDependencies": {
