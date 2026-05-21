@@ -350,24 +350,24 @@ const processMessage = async (
 		// for the reference architecture — whatsmeow's `handleProtocolMessage`
 		// only contains self-only types because edits are unwrapped from
 		// `EditedMessage` BEFORE this dispatch and revokes aren't routed here.
-		const SELF_ONLY_TYPES = new Set<proto.Message.ProtocolMessage.Type>([
-			proto.Message.ProtocolMessage.Type.HISTORY_SYNC_NOTIFICATION,
-			proto.Message.ProtocolMessage.Type.APP_STATE_SYNC_KEY_SHARE,
-			proto.Message.ProtocolMessage.Type.LID_MIGRATION_MAPPING_SYNC,
-			proto.Message.ProtocolMessage.Type.PEER_DATA_OPERATION_REQUEST_RESPONSE_MESSAGE
-		])
-		if (
-			protocolMsg.type !== null &&
-			protocolMsg.type !== undefined &&
-			SELF_ONLY_TYPES.has(protocolMsg.type) &&
-			!message.key.fromMe
-		) {
-			logger?.warn(
-				{ msgId: message.key.id, type: protocolMsg.type, from: message.key.participant || message.key.remoteJid },
-				'dropping spoofed self-only protocolMessage from non-self origin'
-			)
-			return
-		}
+		// const SELF_ONLY_TYPES = new Set<proto.Message.ProtocolMessage.Type>([
+		// 	proto.Message.ProtocolMessage.Type.HISTORY_SYNC_NOTIFICATION,
+		// 	proto.Message.ProtocolMessage.Type.APP_STATE_SYNC_KEY_SHARE,
+		// 	proto.Message.ProtocolMessage.Type.LID_MIGRATION_MAPPING_SYNC,
+		// 	proto.Message.ProtocolMessage.Type.PEER_DATA_OPERATION_REQUEST_RESPONSE_MESSAGE
+		// ])
+		// if (
+		// 	protocolMsg.type !== null &&
+		// 	protocolMsg.type !== undefined &&
+		// 	SELF_ONLY_TYPES.has(protocolMsg.type) &&
+		// 	!message.key.fromMe
+		// ) {
+		// 	logger?.warn(
+		// 		{ msgId: message.key.id, type: protocolMsg.type, from: message.key.participant || message.key.remoteJid },
+		// 		'dropping spoofed self-only protocolMessage from non-self origin'
+		// 	)
+		// 	return
+		// }
 
 		switch (protocolMsg.type) {
 			case proto.Message.ProtocolMessage.Type.HISTORY_SYNC_NOTIFICATION:
