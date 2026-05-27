@@ -36,6 +36,7 @@ export const executeWMexQuery = async <T>(
 	const result = await wMexQuery(variables, queryId, query, generateMessageTag)
 	const child = getBinaryNodeChild(result, 'result')
 	if (child?.content) {
+		if(child.attrs?.format === 'argo') return child.content as unknown as T
 		const data = JSON.parse(child.content.toString())
 
 		if (data.errors && data.errors.length > 0) {
