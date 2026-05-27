@@ -32,7 +32,7 @@ const parseNewsletterMetadata = (result: unknown): NewsletterMetadata | null => 
 			return trimmed
 		}
 
-		const match = /^z(\d+@newsletter)/.exec(trimmed)
+		const match = /(?<=z)\d+@newsletter/.exec(trimmed)
 		return match?.[1] ?? null
 	}
 
