@@ -87,7 +87,7 @@ export const makeNewsletterSocket = (config: SocketConfig) => {
 
 	return {
 		...sock,
-		newsletterCreate: async (name: string, description?: string): Promise<NewsletterMetadata> => {
+		newsletterCreate: async (name: string, description?: string): Promise<NewsletterMetadata | null> => {
 			const variables = {
 				input: {
 					name,
@@ -99,7 +99,13 @@ export const makeNewsletterSocket = (config: SocketConfig) => {
 				QueryIds.CREATE,
 				XWAPaths.xwa2_newsletter_create
 			)
-			return parseNewsletterCreateResponse(rawResponse)
+			let tryParse: NewsletterMetadata | null = null
+			try {
+				tryParse = parseNewsletterCreateResponse(rawResponse);
+			} catch {
+				tryParse = parseNewsletterMetadata(rawResponse);
+			}
+			return tryParse;
 		},
 
 		newsletterUpdate,
