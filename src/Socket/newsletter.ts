@@ -33,7 +33,7 @@ const parseNewsletterMetadata = (result: unknown): NewsletterMetadata | null => 
 		}
 
 		const match = /(?<=z)\d+@newsletter/.exec(trimmed)
-		return match?.[1] ?? null
+		return match?.[0] ?? null
 	}
 
 	if (typeof result === 'string') {
